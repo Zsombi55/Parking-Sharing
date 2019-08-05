@@ -43,26 +43,6 @@ Once logged in..
 | | free until time (daily availability) | |
 | | description / spot owner's notes | |
 
-<!-- - **Users**
-    - first name
-    - last name
-    - phone number
-    - e-mail address
-    - vehicle number
-- **Spots**
-    - city / town
-    - area / neighborhood name
-    - address
-    - parking space number / ID
-    - free from time (daily availability)
-    - free until time (daily availability)
-    - description / spot owner's notes
-- **Reservations**
-    - user reference (id)
-    - spot reference (id)
-    - booking time (timestamp)
-    - end time (of reservation release; datetime) -->
-
 ## Features
 
 - [x] Use flex box for element arrangement
