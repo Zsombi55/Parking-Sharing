@@ -1,0 +1,143 @@
+<!-- FTIT final exam project, "Parking-Sharing".
+  Allows a somewhat organized sharing of parking spots within their main user's alotted timeframe. -->
+
+  <!DOCTYPE HTML>
+  <html>
+  
+  <head>
+      <meta charset="UTF-8">
+      <title>Project-Parking</title>
+      <link rel="stylesheet" href="stylesheets/style.css">
+      <link rel="icon" href="data:,">
+      <!--Hack to prevent "the favicon error".-->
+  </head>
+  
+  <body>
+      <div id="pageMainContent">
+  
+          <header>
+              <div id="page-name">
+                  <!--Page title, logo & some catchy summary.-->
+                  <h2 id="pageName">
+                      <!--<img src="#" alt="awesome logo" />-->
+                      <b>Project-Parking</b>
+                  </h2>
+  
+                  <h3 id="summary">Înregistrați-vă spațiile de parcare și permiteți-le și altora să le folosească atunci când nu le folosiți!
+                  </h3>
+  
+                  
+              </div>
+  
+              <!--Top Menu Bar section-->
+              <nav id="top-menuBar" class="top-menuBar">
+                  <ul id="topMenu" class="topMenu">
+                      <!--"data-page" properties point to the page IDs. -->
+                      <li><a href="#" id="loginHome" data-page="homePage">Login / Cont</a></li>
+                      <li><a href="#" data-page="aboutPage">Despre noi</a></li>
+                      <li><a href="#" data-page="searchPage">Locuri libere</a></li>
+                      <li id="menuAbout"><a href="#" data-page="contactPage">Contact</a></li>
+                  </ul>
+              </nav> <!-- Top Menu Bar -->
+          </header>
+  
+          <!--Content section-->
+          <section id="centerContent">
+  
+              <!-- The IDs have to match the connected link's data-page value. -->
+              <div id="loginPage" class="page" name="loginPage"> <!--Style display "block" ONLY after "login" else "none" !! -->
+                  <form id="lgForm" method="post" action="auth" onsubmit="return false"> <!--Remove input values after done testing !!-->
+                      <div><input id="lgPhone" type="text" placeholder="Nr. Telefon" required="required" name="lgPhone" tabindex="1" value="768735915"></div>
+                      <div><input id="lgMail" type="text" placeholder="Adresa de mail" required="required" name="lgMail" tabindex="2" value="Lacatus.Aurel@yahoo.com"></div>
+                      <div><input id="lgCar" type="text" placeholder="Nr. Masina" required="required" name="lgCar" tabindex="3" value="CJ88ZWZ"></div>
+                      <input type="submit" name="commit" value="Login" onclick="clickLogin()">
+                  </form>
+  
+                  <div>
+                  </br>
+                  <p>This is <b>only</b> for ease of testing. Get user ID after login: localStorage.</p>
+                  <table>
+                      <tr><td>ID: 6</td><td>ID: 3</td><td>ID: 9</td></tr>
+                      <tr>
+                          <td>768735915</td>
+                          <td>769951753</td>
+                          <td>769246837</td>
+                      </tr>
+                      <tr>
+                          <td>Lacatus.Aurel@yahoo.com</td>
+                          <td>Dobrescu.Vlad@gmail.com</td>
+                          <td>AntonescuMircea@yahoo.com</td>
+                      </tr>
+                      <tr>
+                          <td>CJ88ZWZ</td>
+                          <td>CJ25DOC</td>
+                          <td>CJ15WIZ</td>
+                      </tr>
+                  </table>
+                  </div>
+              </div>
+              
+              <div id="homePage" class="page" name="homePage"> <!--Style display "none" ONLY while testing the DB, ELSE "block" !! -->
+                  <h3>Acasă</h3>
+                  <form id="lgoForm">
+                      <input type="submit" name="quit" value="Logout" onclick="clickLogout()">
+                  </form>
+              </div>
+  
+              <div id="aboutPage" class="page">
+                  <h3>Despre noi</h3>
+                  <p>Donare?</p>
+              </div>
+  
+              <div id="searchPage" class="page"> <!--Style display "block" ONLY while testing, ELSE nothing !! -->
+                  <h3>Locuri libere</h3>
+                  <div class="searchDiv">
+                      <div><input id="searchCity" class="searchSpot" name="searchCity" type="text" placeholder="Caută oraș.." tabindex="1" autofocus></div>
+                      <div><input id="searchArea" class="searchSpot" name="searchArea" type="text" placeholder="Caută cartier.." tabindex="2"></div>
+                      <div><input id="searchAddr" class="searchSpot" name="searchAddr" type="text" placeholder="Caută adresă.." tabindex="3"></div>
+                  </div>
+  
+                  <!--Spots Database Table View section-->
+                  <table id="addresses" class="tbl">
+                      <!--Column sizes.-->
+                      <col style="width: 15%">
+                      <col style="width: 15%">
+                      <col style="width: 24%">
+                      <col style="width: 8%">
+                      <col style="width: 8%">
+                      <col style="width: 8%">
+                      <col style="width: 22%">
+                      <thead>
+                          <tr>
+                              <th>Localitatea</th>
+                              <th>Cartier</th>
+                              <th>Adresa</th>
+                              <th>Nr. Loc</th>
+                              <th>De la</th>
+                              <th>Până la</th>
+                              <th>Comentariu</th>
+                          </tr>
+                      </thead>
+                      <tbody></tbody> <!-- Table content, script generated. -->
+                      <tfoot><tr></tr></tfoot>
+                  </table>
+              </div>
+  
+              <div id="contactPage" class="page">
+                  <h3>Scrieți-ne &#9786;</h3>
+                  <p>Ceva text.</p>
+              </div>
+          </section> <!-- page main content Center Section -->
+  
+      </div> <!-- page Main Content -->
+  
+      <footer id="footer"><a href="https://www.fasttrackit.org/" target="_blank">FastTrackIT homepage</a></footer>
+  
+      <!-- JavaScript -->
+      <div>
+          <script src="javascripts/parking.js"></script>
+      </div>
+  
+  </body>
+  
+  </html>
