@@ -123,6 +123,38 @@ function submitLogin(phone, email, car_nr){
 	})
 };
 
+// Preview, GitHub, json.
+function submitStaticLogin(lgPhone, lgEmail, lgCar) {
+	if (document.querySelector("#addresses tbody")) {
+		// data/staticPeople.json
+		fetch(API_URL.LOGIN).then(function (resp) {
+			return resp.json();
+		}).then(function (loginData) { // = the succesfully returned "resp"onse.
+			console.log("Login-able people: ", loginData);
+			allPeople = loginData;
+			//
+			// check login input validity vs. JSON data.
+			var p = [];
+			for (var i = 0; i < allPeople.length; i++) {
+				p = allPeople[i];
+				if (p.phone == lgPhone &&
+					p.email == lgEmail &&
+					p.car_nr == lgCar) {
+					console.log("true")
+					const user = loginData[i];
+					localStorage.setItem('user', JSON.stringify(user));
+					window.location = "index.html";
+					break;
+				} else {
+					console.log("false")
+					//console.warn("Invalid data!");
+					localStorage.clear();
+				}
+			}
+		});
+	}
+}
+
 // Logout, clear localstorage.
 function clickLogout() {
 	console.warn("Clicked on logout.", this);
@@ -157,7 +189,7 @@ if (document.querySelector("#addresses tbody")) {
 }
 
 // Basic "Spots" DB Data transfer handlers:
-// Search page initialization.
+// Local server with DB. -- Search page initialization.
 function searchSpotReq(city, area, address){
 	const personId = getUser().id;
 	const method = API_METHOD.READ;
@@ -175,6 +207,17 @@ function searchSpotReq(city, area, address){
 		allSpots = parkingData;
 		displaySpots(parkingData);
 	})
+}
+
+// GitHub host, Demo JSON Load all "staticSpots" data.
+function loadSpots() {	
+	fetch(API_URL.READ).then(function (resp) {
+		return resp.json();
+	}).then(function (spots) {
+		console.log("All spots. Reserved by user are colored.", spots);
+		allSpots = spots;
+		displaySpots(spots);
+	});
 }
 
 // Show "spots" DB (actual) or JSON (GitHub) data on page.

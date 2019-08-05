@@ -15,3 +15,82 @@ Open [https://zsombi55.github.io/Parking-Sharing/public/index.html](https://zsom
 ## Content
 
 Once logged in..
+
+- **CRUD** operations:
+    - **C**reate new reservation
+    - **R**ead users (account data) spots and reservations from .json files
+    - **U**pdate reservations
+    - **D**elete reservations
+- **Search** available spots & user reservations
+    - by: city / area / street name 
+
+###### Database:
+
+**Parking**
+
+- Use a mysql database.
+- Create database named "parking" using encoding "UTF8_general_ci".
+- Import tables & example data from the provided sql file.
+>./public/data/parking.sql
+
+
+
+
+
+- **Users**
+    - first name
+    - last name
+    - phone number
+    - e-mail address
+    - vehicle number
+- **Spots**
+    - city / town
+    - area / neighborhood name
+    - address
+    - parking space number / ID
+    - free from time (daily availability)
+    - free until time (daily availability)
+    - description / spot owner's notes
+- **Reservations**
+    - user reference (id)
+    - spot reference (id)
+    - booking time (timestamp)
+    - end time (of reservation release; datetime)
+
+## Features
+
+- [x] Use flex box for element arrangement
+- [x] Use of MariaDB (MySql) for data storage.
+- [x] **After** logging in: View available & booked spots
+- [x] Basic login, storing session data in "local storage"
+- [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address
+- [x] Basic Sesion logout & clearing of "local storage"
+- [x] **Partial** login page styling
+
+### To Do
+
+- [ ] Mock booking functionality for the demo (changes only seen on the page not "actually" saving)
+- [ ] Mock reservation ending functionality for the demo (changes only seen on the page not "actually" saving)
+- [ ] Finish login page styling
+- [ ] "Proper" login, session & logout management
+- [ ] View of all available Spots even without logging in
+- [ ] View & modify account information **by** the user
+    - Names, phone number, e-mail address, car & parking space data
+- [ ] View Name, phone number & e-amil address of user booking a spot by spot owner
+- [ ] "Send e-mail" type message Form for the Contact page.
+
+## Setup
+
+Clone project, then install npm inside its root folder to get the current "node_modules" package.
+
+```
+npm install
+```
+
+## Running app (locally)
+
+```
+npm run devstart
+```
+
+open http://localhost:3000
