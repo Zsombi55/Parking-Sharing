@@ -33,11 +33,17 @@ Once logged in..
 - Import tables & example data from the provided sql file.
 >./public/data/parking.sql
 
+| Users | Spots | Reservations |
+| --- | --- | --- |
+| first name | city / town | user reference (id) |
+| last name | area / neighborhood name | spot reference (id) |
+| phone number | address | booking time (timestamp) |
+| e-mail address | parking space number / ID | end time (of reservation release; datetime) |
+| vehicle number | free from time (daily availability) | |
+| | free until time (daily availability) | |
+| | description / spot owner's notes | |
 
-
-
-
-- **Users**
+<!-- - **Users**
     - first name
     - last name
     - phone number
@@ -55,7 +61,7 @@ Once logged in..
     - user reference (id)
     - spot reference (id)
     - booking time (timestamp)
-    - end time (of reservation release; datetime)
+    - end time (of reservation release; datetime) -->
 
 ## Features
 
