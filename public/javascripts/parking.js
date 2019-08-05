@@ -21,6 +21,17 @@ var API_METHOD = {
 	DELETE: "DELETE"
 };
 
+// For preview, github.io, json.
+if (true || location.host === "zsombi55.github.io") {
+	console.warn("GitHub is the server!");
+	isGitHost = true;
+	API_URL.READ = 'data/staticSpots.json';
+	API_URL.LOGIN = 'data/staticPeople.json';
+	API_METHOD.READ = 'GET';
+	API_METHOD.LOGIN = 'GET';
+};
+
+
 // Top-menu handlers:
 function initTopMenu() {	// find all top-menu items and handle their "onclick" events.
 	const links = document.querySelectorAll("#topMenu a");
@@ -60,7 +71,92 @@ initTopMenu();
 // --END-- Top-menu functions.
 
 
-// "Spots" DB Data transfer handlers:
+function getUser() {	return JSON.parse(localStorage.getItem("user"));	}
+
+// Login handlers.
+function clickLogin(){
+	console.warn("clicked on login", this);	
+
+	var lgPhone = document.querySelector("[name=lgPhone]").value;
+	var lgEmail = document.querySelector("[name=lgMail]").value;
+	var lgCar = document.querySelector("[name=lgCar]").value;
+	console.warn("Click Login passes data: \n Phone: ", + lgPhone + " |Email: " + lgEmail + " |Car: " + lgCar);
+
+	if (lgPhone == "" || lgEmail == "" || lgCar == "") {
+		alert("Completați toate !");
+		return false;
+	} else {
+		if (!isGitHost) {
+			console.warn("DB auth.");
+			submitLogin(lgPhone, lgEmail, lgCar);	// DB auth.
+		} else {
+			console.log("JSON auth. for Preview ONLY !!");
+			submitStaticLogin(lgPhone, lgEmail, lgCar);	// JSON auth.
+		}
+	}
+};
+
+function submitLogin(phone, email, car_nr){	
+	let body = null;
+	const method = API_METHOD.LOGIN;
+
+	if (method === "POST") {
+		body = JSON.stringify({ phone, email, car_nr });
+	}
+
+	fetch(API_URL.LOGIN, {
+		method, body, headers: { "Content-Type": "application/json" }
+	}).then(function (resp) {
+		return resp.json()
+	}).then(function (loginData) { // = the succesfully returned "resp"onse.
+		console.log("Login input: ", loginData);
+
+		// check login input validity vs. DB data.
+		if(loginData && loginData.length > 0) {
+            const user = loginData[0];
+            localStorage.setItem('user', JSON.stringify(user));
+            window.location = "index.html";
+        } else {
+            console.warn("Invalid data!");
+            localStorage.clear();
+        }
+	})
+};
+
+// Logout, clear localstorage.
+function clickLogout() {
+	console.warn("Clicked on logout.", this);
+	if(localStorage.getItem("user")) {
+		localStorage.clear();
+		window.location = "index.html"
+	}
+	else { console.log("There is no logged \"user\".");	}
+};
+// --END-- Login functions.
+
+
+//// TODO: swap direct element gets with functions.
+if (document.querySelector("#addresses tbody")) {
+	if (localStorage.getItem('user')) {
+		console.log("login ok");
+		//document.getElementsByName("homePage")[0].style.display = "block";
+		document.getElementById("searchPage").style.display = "block";
+		
+		if (!isGitHost) {
+			console.warn("DB auth. SearchSpot().");
+			searchSpot();	// DB auth.
+		} else {
+			console.log("JSON auth. for Preview ONLY !! LoadSpots().");
+			loadSpots();	// JSON auth.
+		}
+	} else {
+		console.log("login not");
+		//document.getElementById("loginHome").setAttribute("data-page", "loginPage");
+		document.getElementsByName("loginPage")[0].style.display = "block";
+	}
+}
+
+// Basic "Spots" DB Data transfer handlers:
 // Search page initialization.
 function searchSpotReq(city, area, address){
 	const personId = getUser().id;
@@ -101,10 +197,10 @@ function displaySpots(parkingData) {
 	});
 	document.querySelector('#addresses tbody').innerHTML = list.join('');
 }
-// --END-- "spots" DB Data transfer handling.
+// --END-- Basic "spots" DB Data transfer handling.
 
 
-// Search "bar".
+// Search "bar" handling.
 function searchSpot() {	/*	If the array only ever has 1 value the parrentheses can be left out.	*/	
 	var city = document.getElementById("searchCity").value;
 	var area = document.getElementById("searchArea").value;
@@ -127,5 +223,45 @@ function initSearch() {
 	});
 }
 // --END-- Search handling.
-searchSpot();
+
+// Booking /Reserving a spot.
+function bookSpot(spotId){
+	const personId = getUser().id;
+	
+	console.log("Booking data: ", personId, spotId);
+
+	const method = API_METHOD.BOOK;
+	if (method === "POST") {
+		body = JSON.stringify({ personId, spotId });
+	}
+
+	fetch(API_URL.BOOK, {
+		method, body, headers: { "Content-Type": "application/json" }
+	}).then(function (resp) {
+		return resp.json()
+	}).then(function (resp) { // = the succesfully returned "resp"-onse.
+		console.log("All spots: ", resp);
+		searchSpot();
+	})
+}
+
+function initBooking() {
+	const tbody = document.querySelector("#addresses tbody");
+
+	tbody.addEventListener("click", function(e) {
+		if (e.target.className == "book") {
+			const tr = e.target.parentNode.parentNode;
+			const id = tr.getAttribute("data-id");
+			
+			console.warn("Parent?", id);
+
+			bookSpot(id);
+		}
+		//TODO: else release spot..
+	});
+}
+// --END-- Booking handling.
+
+
 initSearch();
+initBooking();
