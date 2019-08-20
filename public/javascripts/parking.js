@@ -1,6 +1,6 @@
 var editingSpotsId;
 var allSpots = [];
-var isGitHost = false;	// NOT Preview.
+var isGitHost = true;	// NOT Preview.
 var allPeople = [];		// JSON, Preview.
 
 var API_URL = {
