@@ -174,7 +174,7 @@ if (document.querySelector("#addresses tbody")) {
 		//document.getElementsByName("homePage")[0].style.display = "block";
 		document.getElementById("searchPage").style.display = "block";
 		
-		if (!isGitHost) {
+		if (isGitHost) {
 			console.warn("DB auth. SearchSpot().");
 			searchSpot();	// DB auth.
 		} else {
@@ -204,9 +204,9 @@ function searchSpotReq(city, area, address){
 		return resp.json()
 	}).then(function (parkingData) { // = the succesfully returned "resp"-onse.
 		console.log("All spots: ", parkingData);
-		allSpots = parkingData;
+		//allSpots = parkingData;
 		displaySpots(parkingData);
-	})
+	});
 }
 
 // GitHub host, Demo JSON Load all "staticSpots" data.
@@ -216,7 +216,8 @@ function loadSpots() {
 	}).then(function (spots) {
 		console.log("All spots. Reserved by user are colored.", spots);
 		allSpots = spots;
-		displaySpots(spots);
+		//displaySpots(spots);
+		displaySpots(allSpots);
 	});
 }
 
@@ -248,7 +249,7 @@ function searchSpot() {	/*	If the array only ever has 1 value the parrentheses c
 	var city = document.getElementById("searchCity").value;
 	var area = document.getElementById("searchArea").value;
 	var address = document.getElementById("searchAddr").value;
-	//console.warn("Dynamic Search passes data: \n"+ "City: ", city , " |Area: " , area , " |Address: " , address);
+	console.warn("Dynamic Search passes data: \n"+ "City: ", city , " |Area: " , area , " |Address: " , address);
 
 	searchSpotReq(city, area, address);
 };
@@ -260,7 +261,7 @@ function initSearch() {
 
 	searchBox.forEach(function (elem) {
 		elem.addEventListener("input", (e) => {
-			//console.warn("Search input: " + e.target.value);
+			console.warn("Search input: " + e.target.value);
 			searchSpot();
 		}, true);
 	});
