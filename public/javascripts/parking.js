@@ -174,7 +174,7 @@ if (document.querySelector("#addresses tbody")) {
 		//document.getElementsByName("homePage")[0].style.display = "block";
 		document.getElementById("searchPage").style.display = "block";
 		
-		if (isGitHost) {
+		if (!isGitHost) {
 			console.warn("DB auth. SearchSpot().");
 			searchSpot();	// DB auth.
 		} else {
