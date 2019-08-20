@@ -23,7 +23,7 @@ var API_METHOD = {
 
 // For preview, github.io, json.
 if (true || location.host === "zsombi55.github.io") {
-	console.warn("GitHub is the server!");
+	//console.warn("GitHub is the server!");
 	isGitHost = true;
 	API_URL.READ = 'data/staticSpots.json';
 	API_URL.LOGIN = 'data/staticPeople.json';
