@@ -49,9 +49,15 @@ Once logged in..
 - [x] Use of MariaDB (MySql) for data storage.
 - [x] **After** logging in: View available & booked spots
 - [x] Basic login, storing session data in "local storage"
-- [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address .. **temporarily unavailable**
+<!-- - [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address -->
 - [x] Basic Sesion logout & clearing of "local storage"
 - [x] **Partial** login page styling
+
+## Broken Features
+
+- **Dynamic spot search** based on any combination of: City, Area (Neighborhood), Address **After** logging in, and
+- **Booked spot highighting** on the list after logging in.
+    - Cause: the way part of the Demo is implemented.
 
 ### To Do
 
