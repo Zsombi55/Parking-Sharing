@@ -49,15 +49,10 @@ Once logged in..
 - [x] Use of MariaDB (MySql) for data storage.
 - [x] **After** logging in: View available & booked spots
 - [x] Basic login, storing session data in "local storage"
-<!-- - [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address -->
+- [x] **After** logging in: Dynamic spot search based on any combination of: City, Area (Neighborhood), Address
 - [x] Basic Sesion logout & clearing of "local storage"
 - [x] **Partial** login page styling
-
-## Broken Features
-
-- **Dynamic spot search** based on any combination of: City, Area (Neighborhood), Address **After** logging in, and
-- **Booked spot highighting** on the list after logging in.
-    - Cause: the way part of the Demo is implemented.
+- [x] Demo version: connect to data storage for login module & spot listing, view N pages from 1 file, arranging elements with flex
 
 ### To Do
 
@@ -74,6 +69,8 @@ Once logged in..
 ## Setup
 
 Clone project, then install npm inside its root folder to get the current "node_modules" package.
+
+Set up MariaDB and import mock data from the sql file in the Public/Data path (for now until in-app is added).
 
 ```
 npm install
