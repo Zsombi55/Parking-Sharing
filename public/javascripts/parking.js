@@ -1,6 +1,6 @@
 var editingSpotsId;
 var allSpots = [];
-var isGitHost = true;	// NOT Preview.
+var isGitHost = false;	// NOT Preview.
 var allPeople = [];		// JSON, Preview.
 
 var API_URL = {
@@ -22,7 +22,8 @@ var API_METHOD = {
 };
 
 // For preview, github.io, json.
-if (true || location.host === "zsombi55.github.io") {
+//if (true || location.host === "zsombi55.github.io") {	// only to test locally, json
+if (location.host === "zsombi55.github.io") {
 	//console.warn("GitHub is the server!");
 	isGitHost = true;
 	API_URL.READ = 'data/staticSpots.json';
