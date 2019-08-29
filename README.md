@@ -58,13 +58,15 @@ Once logged in..
 
 - [ ] Mock booking functionality for the demo (changes only seen on the page not "actually" saving)
 - [ ] Mock reservation ending functionality for the demo (changes only seen on the page not "actually" saving)
+- [ ] Actual booking & reservation release
 - [ ] Finish login page styling
 - [ ] "Proper" login, session & logout management
 - [ ] View of all available Spots even without logging in
 - [ ] View & modify account information **by** the user
     - Names, phone number, e-mail address, car & parking space data
 - [ ] View Name, phone number & e-amil address of user booking a spot by spot owner
-- [ ] "Send e-mail" type message Form for the Contact page.
+- [ ] "Send e-mail" type message Form for the Contact page
+- [ ] Changeable app display language between ENG~RO
 
 ## Setup
 
